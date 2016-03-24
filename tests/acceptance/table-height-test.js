@@ -11,7 +11,6 @@ var application;
 module('Acceptance: Table Height', {
   beforeEach: function() {
     application = startApp();
-    setRandomSeed(6);
   },
 
   afterEach: function() {
@@ -30,17 +29,6 @@ module('Acceptance: Table Height', {
 function getCSSHeight(element) {
   return parseInt(find(element).css('height'), 10);
 }
-
-test('Table renders', function(assert) {
-  visit('/table-height');
-  andThen(function() {
-    assert.equal(currentPath(), 'table-height');
-    const headers = ['Date', 'Open', 'High', 'Low', 'Close'];
-    const firstRow = ['Thu Jul 14 2005', '22.49', '-18.01', '-47.10', '-0.30'];
-    assert.deepEqual(rowText(0), headers, 'headers');
-    assert.deepEqual(rowText(1), firstRow, 'values in first row');
-  });
-});
 
 test('Table height renders properly without a container height set', function(assert) {
   visit('/table-height');
